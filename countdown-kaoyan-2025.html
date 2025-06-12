@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 考研倒计时</title>
+  <style>
+    /* 全局重置与排版 */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 容器 */
+    .countdown-container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* 标题 */
+    .countdown-container h1 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    /* 倒计时数字区域 */
+    .countdown {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .countdown .unit {
+      flex: 1;
+    }
+    .countdown .unit:not(:last-child) {
+      border-right: 1px solid #e0e0e0;
+    }
+    .countdown .value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ff7f50;
+      line-height: 1;
+    }
+    .countdown .label {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    /* 备注信息 */
+    .info {
+      font-size: 0.875rem;
+      color: #555;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown-container">
+    <h1>2026 年考研倒计时</h1>
+    <div class="countdown">
+      <div class="unit">
+        <div class="value" id="days">--</div>
+        <span class="label">天</span>
+      </div>
+      <div class="unit">
+        <div class="value" id="hours">--</div>
+        <span class="label">时</span>
+      </div>
+      <div class="unit">
+        <div class="value" id="minutes">--</div>
+        <span class="label">分</span>
+      </div>
+      <div class="unit">
+        <div class="value" id="seconds">--</div>
+        <span class="label">秒</span>
+      </div>
+    </div>
+    <div class="info">
+      <p>全国硕士研究生初试：2025 年 12 月 20 日–21 日</p>
+      <p>（考试时长超过 3 小时的科目，安排在 12 月 22 日）</p>
+    </div>
+  </div>
+
+  <script>
+    // 设置倒计时目标（上海时区 UTC+8）
+    const endDate = new Date("2025-12-20T00:00:00+08:00").getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      let diff = endDate - now;
+      if (diff < 0) diff = 0;
+
+      const d = Math.floor(diff / 86400000);
+      diff %= 86400000;
+      const h = Math.floor(diff / 3600000);
+      diff %= 3600000;
+      const m = Math.floor(diff / 60000);
+      diff %= 60000;
+      const s = Math.floor(diff / 1000);
+
+      document.getElementById('days').textContent    = String(d).padStart(2, '0');
+      document.getElementById('hours').textContent   = String(h).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
