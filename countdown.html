@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>2026考研倒计时</title>
+  <style>
+    /* 整体容器 */
+    .daojishi-div-box {
+      width: 100%;
+    }
+    /* 上半部分：倒计时框的外边框 */
+    .daojishi-div-box-top {
+      display: flex;
+      justify-content: center; /* 水平居中 */
+      margin-bottom: 10px;
+    }
+    /* 倒计时主体 */
+    .daojishi-div-box-top .daojishi-second-box {
+      width: 455px;
+      /* 用 min-height 替代固定 height，保证足够高度同时自动适应内容 */
+      min-height: 187px;
+      border: 8px solid rgb(211, 131, 16);
+      background-color: rgb(36, 66, 66);
+      text-align: center;
+      /* 上/左右内边距保持不变，底部加大以拉开与边框距离 */
+      padding: 20px 80px 40px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .daojishi-div-box-top .daojishi-second-box .title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .daojishi-div-box-top .daojishi-second-box .time {
+      font-size: 35px;
+      margin-top: 8px;
+      /* 如果还需要微调，可在这里加 margin-bottom */
+      /* margin-bottom: 10px; */
+    }
+    .daojishi-div-box-top .daojishi-second-box p span {
+      color: rgb(238, 249, 3);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="daojishi-div-box">
+    <!-- 上半倒计时框 -->
+    <div class="daojishi-div-box-top">
+      <div class="daojishi-second-box">
+        <p class="title">2026年考研倒计时</p>
+        <p>
+          2026全国硕士研究生初试时间：
+          <span>2025年12月20日至21日</span><br>
+          （考试时间超过3小时的科目，安排在12月22日）<br>
+          目前距离2026年考研倒计时还有
+        </p>
+        <p class="time" id="daojishi">190 天 22 时 57 分 34 秒</p>
+      </div>
+    </div>
+    <!-- 下半功能项已删除 -->
+  </div>
+
+  <script>
+    // 示例倒计时脚本，替换成你的实际逻辑
+    function updateCountdown() {
+      const end = new Date(2025, 11, 20, 0, 0, 0); // 12月20日零点
+      const now = new Date();
+      let diff = Math.max(0, end - now);
+      const d = Math.floor(diff / 86400000); diff %= 86400000;
+      const h = Math.floor(diff / 3600000); diff %= 3600000;
+      const m = Math.floor(diff / 60000); diff %= 60000;
+      const s = Math.floor(diff / 1000);
+      document.getElementById('daojishi').textContent =
+        `${d} 天 ${h} 时 ${m} 分 ${s} 秒`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
